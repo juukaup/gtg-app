@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.exercises.models import Exercise
@@ -37,6 +37,7 @@ def exercises_create():
         return render_template("exercises/new.html", form = form)
 
     ex = Exercise(form.name.data, form.description.data)
+    ex.account_id = current_user.id
 
     db.session().add(ex)
     db.session().commit()
