@@ -20,4 +20,9 @@ def auth_login():
 
 
     login_user(user)
-    return redirect(url_for("index"))   
+    return redirect(url_for("index"))
+
+@app.route("/auth/logout")
+def auth_logout():
+    logout_user()
+    return redirect(url_for("index")) 

@@ -1,5 +1,7 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required
+
+from application import app, db
 from application.exercises.models import Exercise
 from application.exercises.forms import ExerciseForm
 
@@ -12,10 +14,12 @@ def exercises_index():
     return render_template("exercises/list.html", exercises = Exercise.query.all())
 
 @app.route("/exercises/update/<exercise_id>", methods=["POST"])
+@login_required
 def exercise_update(exercise_id):
     return render_template("exercises/update.html", exercise= Exercise.query.get(exercise_id), form = ExerciseForm())
 
 @app.route("/exercises/update/make/<exercise_id>", methods=["POST"])
+@login_required
 def exercise_change_description(exercise_id):
     form = ExerciseForm(request.form)
     ex = Exercise.query.get(exercise_id)
@@ -25,6 +29,7 @@ def exercise_change_description(exercise_id):
     return redirect(url_for("exercises_index"))
 
 @app.route("/exercises/", methods=["POST"])
+@login_required
 def exercises_create():
     form = ExerciseForm(request.form)
 
