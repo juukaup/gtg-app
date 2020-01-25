@@ -8,7 +8,7 @@ class Exercise(db.Model):
     name = db.Column(db.String(256), nullable=False)
     description = db.Column(db.Text, nullable=True)
 
-    def __init__(self, name, description):
+    def __init__(self, name, description=None):
         self.name = name
         self.description = description
 

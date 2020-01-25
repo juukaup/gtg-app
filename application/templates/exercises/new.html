@@ -1,9 +1,45 @@
 {% extends "layout.html" %}
-  
+
 {% block body %}
 <form method="POST" action="{{ url_for('exercises_create') }}">
-  <input type="text" name="name"/>
-  <input type="text" name="description"/>
-  <input type="submit" value="Add a new exercise"/>
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.description.label }}
+      </td>
+      <td>
+        {{ form.description }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.description.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Add a new exercise" />
+      </td>
+    </tr>
+    <!--input type="text" name="name" />
+    <input type="text" name="description" />
+    <input type="submit" value="Add a new exercise" /-->
 </form>
 {% endblock %}
