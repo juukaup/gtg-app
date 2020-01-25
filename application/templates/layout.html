@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>GTG-app</title>
-  </head>
 
-  <body>
-    <h1>Grease the groove</h1>
-    <ul>
-      <li><a href="{{ url_for('exercises_index') }}">List exercises</a></li>
-      <li><a href="{{ url_for('exercises_form') }}">Add an exercise</a></li>
+<head>
+  <meta charset="utf-8">
+  <title>GTG-app</title>
+</head>
+
+<body>
+  {% if current_user.is_authenticated %}
+  <p>
+    Kirjautunut nimellä {{ current_user.name }}
+  </p>
+  {% else %}
+  <a href="{{ url_for('auth_login') }}">Login</a>
+  {% endif %}
+
+  <h1>Grease the groove</h1>
+  <ul>
+    <li><a href="{{ url_for('exercises_index') }}">List exercises</a></li>
+    <li><a href="{{ url_for('exercises_form') }}">Add an exercise</a></li>
     {% block body %}
-      <p>
-        Content.
-      </p>
+    <p>
+      Content.
+    </p>
     {% endblock %}
-  </body>
+</body>
+
 </html>

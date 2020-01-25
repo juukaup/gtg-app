@@ -5,7 +5,7 @@ class Exercise(db.Model):
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp())
 
-    name = db.Column(db.String(256), nullable=False)
+    name = db.Column(db.String(144), nullable=False)
     description = db.Column(db.Text, nullable=True)
 
     def __init__(self, name, description=None):
