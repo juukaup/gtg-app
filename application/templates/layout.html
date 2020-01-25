@@ -6,9 +6,10 @@
   </head>
 
   <body>
+    <h1>Grease the groove</h1>
     <ul>
-      <li><a href="{{ url_for('tasks_index') }}">List tasks</a></li>
-      <li><a href="{{ url_for('tasks_form') }}">Add a task</a></li>
+      <li><a href="{{ url_for('exercises_index') }}">List exercises</a></li>
+      <li><a href="{{ url_for('exercises_form') }}">Add an exercise</a></li>
     {% block body %}
       <p>
         Content.

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Exercise</th>
+      <th>Description</th>
+    </tr>
+    {% for exercise in exercises %}
+    <tr>
+      <td>{{ exercise.name }}</td>
+      <td>{{ exercise.description }}</td>
+      <td><form method="POST" action="{{ url_for('exercise_update', exercise_id=exercise.id) }}">
+        <input type="submit" value="Give description">
+      </form></td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

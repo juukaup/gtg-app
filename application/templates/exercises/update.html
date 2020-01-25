@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('exercise_change_description', exercise_id = exercise.id) }}">
+  {{exercise.name}}
+  <input type="text" name="description"/>
+  <input type="submit" value="Update"/>
+</form>
+{% endblock %}
