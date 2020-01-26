@@ -1,12 +1,13 @@
 # Flask app
+import os
 from flask import Flask
 app = Flask(__name__)
+app.config.from_object(os.environ['APP_SETTINGS'])
+print(os.environ['APP_SETTINGS'])
 
 from flask_sqlalchemy import SQLAlchemy
 
 # Database
-import os
-
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
