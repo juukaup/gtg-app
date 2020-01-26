@@ -1,7 +1,7 @@
 # Custom
-gtgapp.code-workspace
+*.code-workspace
 gtgapp.db
-.vscode
+.vscode/
 venv
 
 # Environments
