@@ -2,6 +2,7 @@
 gtgapp.code-workspace
 gtgapp.db
 .vscode
+venv
 
 # Environments
 .env
