@@ -28,6 +28,19 @@ def exercise_change_description(exercise_id):
 
     return redirect(url_for("exercises_index"))
 
+@app.route("/exercises/delete/<exercise_id>", methods=["POST"])
+@login_required
+def exercise_delete(exercise_id):
+    ex = Exercise.query.get(exercise_id)
+
+    if ex.account_id != current_user.id:
+        abort(403)
+
+    db.session().delete(ex)
+    db.session().commit()
+
+    return redirect(url_for("exercises_index"))
+
 @app.route("/exercises/", methods=["POST"])
 @login_required
 def exercises_create():

@@ -10,9 +10,14 @@
     <tr>
       <td>{{ exercise.name }}</td>
       <td>{{ exercise.description }}</td>
-      <td><form method="POST" action="{{ url_for('exercise_update', exercise_id=exercise.id) }}">
-        <input type="submit" value="Give description">
-      </form></td>
+      <td>
+        <form method="POST" action="{{ url_for('exercise_update', exercise_id=exercise.id) }}">
+        <input type="submit" value="Give description"></form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('exercise_delete', exercise_id=exercise.id) }}">
+        <input type="submit" value="Remove"></form>
+      </td>
     </tr>
     {% endfor %}
   </table>
