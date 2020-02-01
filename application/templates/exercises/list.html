@@ -12,7 +12,7 @@
       <td>{{ exercise.description }}</td>
       <td>
         <form method="POST" action="{{ url_for('exercise_update', exercise_id=exercise.id) }}">
-        <input type="submit" value="Give description"></form>
+        <input type="submit" value="Change description"></form>
       </td>
       <td>
         <form method="POST" action="{{ url_for('exercise_delete', exercise_id=exercise.id) }}">
