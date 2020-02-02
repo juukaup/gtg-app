@@ -40,13 +40,14 @@ def auth_login():
 
     user = User.query.filter_by(username=form.username.data).first()
                                 
+    wrong_credentials_msg = "Invalid username or password"
     if not user:
         return render_template("auth/loginform.html", form = form,
-                               error = "No such username or password")
+                               error=wrong_credentials_msg)
 
     if not bcrypt.check_password_hash(user.password, form.password.data):
         return render_template("auth/loginform.html", form=form, 
-        error="No such username or password")
+        erro=wrong_credentials_msg)
 
     login_user(user)
     return redirect(url_for("index"))

@@ -1,8 +1,82 @@
 {% extends "layout.html" %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('auth_login') }}">
+
+
+
+
+<div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h4 class="modal-title">Member Login</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                        <form method="POST" id="myForm" action="{{ url_for('auth_login') }}">
+                              {{ form.csrf }}
+                              <div class="form-group">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="form-control" id="Username" placeholder="username"
+                                          name="username" required="required">
+                                    <!-- {{ wtf.form_field(form.username, class='form-control', placeholder='Username') }} -->
+                              </div>
+                              <div class="form-group">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="password" class="form-control" placeholder="Password" id="password"
+                                          name="password" required="required">
+                              </div>
+                              <div class="form-group">
+                                    <button type="submit" id="loginSubmit"
+                                          class="btn btn-primary btn-block btn-lg">Login</button>
+                              </div>
+                              {% if error is defined %}
+                              <div class="alert alert-danger alert-dismissible fade show">
+                                    {{ error }}
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                              </div>
+                              {% endif %}
+                              {% if success is defined %}
+                              <div class="alert alert-success alert-dismissible fade show">
+                                    {{ success }}
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                              </div>
+                              {% endif %}
+                        </form>
+                  </div>
+                  <div class="modal-footer">
+                        <text>Looking to create an account? </text>
+                        <a href="{{ url_for('auth_register') }}" style="color: #00a2ff">Sign up</a>
+                  </div>
+            </div>
+      </div>
+</div>
+
+
+
+<!-- <div class="ui container" style="padding-top: 6em">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class=flashes>
+          {% for message in messages %}
+          <div class="ui dimmer modals page transition hidden">
+              <div class="ui standard test modal transition hidden">
+                  <div class="header">
+                      {{ message }}
+                  </div>
+                  <div class="actions">
+                      <div class="ui positive right button">
+                          Ok!
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+</div>	 -->
+
+<!-- <form method="POST" action="{{ url_for('auth_login') }}">
   <table>
     <tr>
       <td>
@@ -25,5 +99,6 @@
 	<input type="submit" value="Login"/>
       </td>
     </tr>
-</form>
+</form> -->
+
 {% endblock %}

@@ -1,12 +1,15 @@
 # Flask app
 import os
 from flask import Flask
+from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+Bootstrap(app)
 
 from flask_sqlalchemy import SQLAlchemy
 
