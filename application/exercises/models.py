@@ -14,3 +14,7 @@ class Exercise(Base):
 
     def change_description(self, description):
         self.description = description
+
+    @staticmethod
+    def search_by_term(exercise, description, term):
+        pass

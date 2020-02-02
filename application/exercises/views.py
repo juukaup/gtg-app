@@ -57,3 +57,25 @@ def exercises_create():
 
     return redirect(url_for("exercises_index"))
 
+@app.route("/exercises/search/", methods=["GET", "POST"])
+def exercises_search():
+    if not request.form:
+        return render_template("exercises/search.html", exercises=Exercise.query.all())
+
+    account_id = ""
+    if current_user.is_authenticated:
+        account_id = current_user.id
+
+    if request.method == 'POST':
+        results = Exercise.search_by_term(
+            exercise=request.form.get("exercise"),
+            description=request.form.get("description"),
+            term=request.form.get("search"))
+
+        return render_template("exercises/search.html",
+                               results=results)
+
+    else:
+        return render_template("exercises/search.html",
+                               exercises=Exercise.query.all(),
+                               account_id=account_id)

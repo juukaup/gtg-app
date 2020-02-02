@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user
 
 from application import app, db, bcrypt
@@ -17,13 +17,14 @@ def auth_register():
         return render_template("auth/registerform.html", form=form, error="Username already exists")
 
     if not form.validate():
-        return render_template("auth/registerform.html", form=form, error="problems")
+        return render_template("auth/registerform.html", form=form)
 
     pw_hash = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
     new_user = User(form.name.data, form.username.data, pw_hash)
 
     db.session().add(new_user)
     db.session().commit()
+    flash("Registration successful!")
 
     new_user_login = User.query.filter_by(username=form.username.data).first()
     login_user(new_user_login)

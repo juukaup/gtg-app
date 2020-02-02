@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div style="margin-top: 30px;" class="row justify-content-md-center">
   <table>
     <tr>
       <th>Exercise</th>
@@ -12,13 +13,15 @@
       <td>{{ exercise.description }}</td>
       <td>
         <form method="POST" action="{{ url_for('exercise_update', exercise_id=exercise.id) }}">
-        <input type="submit" value="Change description"></form>
+          <input type="submit" value="Change description"></form>
       </td>
       <td>
         <form method="POST" action="{{ url_for('exercise_delete', exercise_id=exercise.id) }}">
-        <input type="submit" value="Remove"></form>
+          <input type="submit" value="Remove"></form>
       </td>
     </tr>
     {% endfor %}
   </table>
+
+</div>
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <p style="margin-top: 100px;">
+            <font size=4>Search for exercises</font>
+        </p>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <form method="POST" action="{{ url_for('exercises_search') }}" id="sform"
+                style="margin-bottom: 30px; width: 12cm;">
+                <div class="input-group">
+                    <input class="col-12 form-control" type="text" name="search" id="stext" placeholder=""
+                        aria-label="Search">
+                    <button style="margin-left: 3mm" name="search_button" type="submit"
+                        class="btn btn-info">Search</button>
+                </div>
+
+                <div class="btn" data-toggle="toggle">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="snam" name="exercise" checked>
+                        <label class="custom-control-label" for="snam">Name</label>
+                    </div>
+                </div>
+                <div class="btn" data-toggle="toggle">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="sdesc" name="description" checked>
+                        <label class="custom-control-label" for="sdesc">Description</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- {% if exercises %}
+    
+    {% elif results is defined %}
+        SEARCH RESULTS
+    {% endif %} -->
+</div>
+
+{% endblock %}
