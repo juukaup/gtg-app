@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, PasswordField, validators
+from wtforms import PasswordField, StringField, validators
   
 class LoginForm(FlaskForm):
     username = StringField("Username", [validators.required(message="Please enter your name.")])
     password = PasswordField("Password", [validators.required("Please enter your password.")])
   
-    # class Meta:
-    #     csrf = False
+    class Meta:
+        csrf = False
 
 class RegisterForm(FlaskForm):
     name = StringField("Name", [validators.required(), validators.Length(
@@ -22,12 +22,12 @@ class RegisterForm(FlaskForm):
         validators.Regexp('^[\w]+$', message="Password must contain both letters and numbers.")
         ])
   
-    # class Meta:
-    #     csrf = False
+    class Meta:
+        csrf = False
 
 class ChangePasswordForm(FlaskForm):
     password = PasswordField('New Password', [validators.required(), validators.EqualTo('confirm', message='Passwords must match')])
     confirm  = PasswordField('Repeat Password')
 
-    # class Meta:
-    #     csrf = False
+    class Meta:
+        csrf = False

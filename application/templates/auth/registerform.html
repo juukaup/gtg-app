@@ -1,58 +1,71 @@
 {% extends "layout.html" %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('auth_register') }}">
-    <table>
-        <tr>
-            <td>
-                {{ form.name.label }}
-            </td>
-            <td>
-                {{ form.name }}
-            </td>
-            <td>
-                <ul>
-                    {% for error in form.name.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.username.label }}
-            </td>
-            <td>
-                {{ form.username }}
-            </td>
-            <td>
-                <ul>
-                    {% for error in form.username.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.password.label }}
-            </td>
-            <td>
-                {{ form.password }}
-            </td>
-            <td>
-                <ul>
-                    {% for error in form.password.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Sign up" />
-            </td>
-        </tr>
-</form>
+
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registration</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="myForm" action="{{ url_for('auth_register') }}">
+                    {{ form.csrf }}
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" id="name" placeholder="Name" name="name"
+                            required="required">
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" id="username" placeholder="Username" name="username"
+                            required="required">
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" class="form-control" placeholder="Password" id="password" name="password"
+                            required="required">
+                    </div>
+                    <!-- Password confirmation-->
+                    <div class="form-group">
+                        <button type="submit" id="signupSubmit" class="btn btn-primary btn-block btn-lg">Sign
+                            up</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Show errors -->
+            {% for formError in form.name.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ formError }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endfor %}
+            {% for formError in form.username.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ formError }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endfor %}
+            {% for formError in form.password.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ formError }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endfor %}
+            {% if error is defined %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ error }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endif %}
+            <div class="modal-footer">
+                <text>Already have an account? </text>
+                <a href="{{ url_for('auth_login') }}" style="color: #00a2ff">Log in</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

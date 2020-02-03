@@ -11,14 +11,14 @@ def auth_register():
         return render_template("auth/registerform.html", form = RegisterForm())
 
     form = RegisterForm(request.form)
-
+    
     username = User.query.filter_by(username=form.username.data).first()
     if username:
         return render_template("auth/registerform.html", form=form, error="Username already exists")
-
+    print(form.name.data, form.username.data, form.password.data)
     if not form.validate():
         return render_template("auth/registerform.html", form=form)
-
+    
     pw_hash = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
     new_user = User(form.name.data, form.username.data, pw_hash)
 
