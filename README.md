@@ -1,6 +1,6 @@
 # gtg-app
 
-[Heroku link](https://dashboard.heroku.com/apps/gtg-stage)
+[Heroku link](https://gtg-stage.herokuapp.com/)
 
 Test application for flask
 
