@@ -65,23 +65,19 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li>
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
         {% if current_user.is_authenticated %}
         <li class="navbar-text">
-          Logged in as {{ current_user.name }} 
-          <a class="btn btn-outline-success" href="{{ url_for('auth_logout') }}">Sign out</a>
+          <font style="margin-left: 20px; color: #62a0d3">Logged in as </font>
+          <font style="margin-right: 10px; color: #62a0d3"><strong>{{ current_user.name }}</strong></font>
+          <a class="btn btn-outline-primary" href="{{ url_for('auth_logout') }}">Sign out</a>
         </li>
         {% else %}
         <a style="margin-right: 1em" class="btn btn-outline-success" href="{{ url_for('auth_login') }}">Login</a>
-        <a class="btn btn-success my-2 mr-sm-2" href="{{ url_for('auth_register') }}">Sign Up</a>
+        <a class="btn btn-info my-2 mr-sm-2" href="{{ url_for('auth_register') }}">Sign Up</a>
         {% endif %}
       </div>
     </div>
   </nav>
-  <div class="container">
     {% block body %}
     <p>
       Content.

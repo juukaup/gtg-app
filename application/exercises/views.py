@@ -1,7 +1,7 @@
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
 
-from application import app, db
+from application import app, db, login_required, login_manager
 from application.exercises.models import Exercise
 from application.exercises.forms import ExerciseForm
 
@@ -33,16 +33,13 @@ def exercise_change_description(exercise_id):
 def exercise_delete(exercise_id):
     ex = Exercise.query.get(exercise_id)
 
-    if ex.account_id != current_user.id:
-        abort(403)
-
     db.session().delete(ex)
     db.session().commit()
 
     return redirect(url_for("exercises_index"))
 
 @app.route("/exercises/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def exercises_create():
     form = ExerciseForm(request.form)
 

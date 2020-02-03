@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user
 
-from application import app, db, bcrypt
+from application import app, db, bcrypt, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm, ChangePasswordForm
 
@@ -47,7 +47,7 @@ def auth_login():
 
     if not bcrypt.check_password_hash(user.password, form.password.data):
         return render_template("auth/loginform.html", form=form, 
-        erro=wrong_credentials_msg)
+        error=wrong_credentials_msg)
 
     login_user(user)
     return redirect(url_for("index"))
